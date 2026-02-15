@@ -15,15 +15,15 @@ use App\Animal\Api\EatBehaviorInterface;
  */
 trait CanEatTrait
 {
-    private EatBehaviorInterface $behavior;
+    private EatBehaviorInterface $eatBehavior;
 
     public function setEatBehavior(EatBehaviorInterface $behavior): void
     {
-        $this->behavior = $behavior;
+        $this->eatBehavior = $behavior;
     }
 
     public function eat(): void
     {
-        $this->behavior->behave();
+        $this->eatBehavior->behave();
     }
 }

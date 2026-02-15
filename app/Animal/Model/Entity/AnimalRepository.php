@@ -54,7 +54,7 @@ class AnimalRepository implements AnimalRepositoryInterface
         $result = AnimalCollectionFactory::create(AnimalCollectionInterface::class);
 
         foreach ($animalCollection as $animal) {
-            if ((string)$animal->name()->equals($name)) {
+            if ($animal->name()->equals($name)) {
                 $result[] = $animal;
             }
         }

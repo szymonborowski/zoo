@@ -14,15 +14,15 @@ use App\Animal\Api\CombBehaviorInterface;
  */
 trait CanCombTrait
 {
-    private CombBehaviorInterface $behavior;
+    private CombBehaviorInterface $combBehavior;
 
     public function setCombBehavior(CombBehaviorInterface $behavior): void
     {
-        $this->behavior = $behavior;
+        $this->combBehavior = $behavior;
     }
 
     public function comb(): void
     {
-        $this->behavior->behave();
+        $this->combBehavior->behave();
     }
 }
