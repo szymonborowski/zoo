@@ -1,45 +1,40 @@
-# Aplikacja ZOO v1.0.0
+# Zoo Management System
 
-Autor: Szymon Borowski szymon.borowski@gmail.com
+A virtual ZOO class system written in PHP 8.5. The application models animals with different diets (carnivore, herbivore, omnivore) and behaviors (eating, fur combing), placed in a zoo with filtering and search capabilities.
 
-Copyright &copy; Szymon Borowski All rights reserved.
+## Architecture
 
-### Aplikacja została napisana w taki sposób, aby w jak najmniejszym stopniu korzystać z zewnętrznych zależności w postaci bibliotek i framworków. Ponieważ celem zadania było w głównej mierze stworzenie struktury klass dla zwierząt i zoo, warstwa widoku ogranicza się do printowania komunikatów związanych z akcjami na obiektach zwierząt i zoo.
+The project follows a Domain-Driven Design approach with two domains:
 
-## W celu uruchomienia aplikacji wykonaj polecenia: 
-`# composer install`
-`# php index.php`
+- **Animal** — animal entities, value objects (Name, DietOption, Gender), behaviors (Strategy Pattern via `CanEatTrait`/`CanCombTrait` traits), repository with filtering, factories
+- **Zoo** — orchestration of operations on the animal collection (feeding, combing, searching)
 
-Poniższy kod jest odpowiedzią na zadanie rekrutacyje.
-Treść zadania:
+Each domain has an `Api/` layer (interfaces) and a `Model/` layer (implementation), ensuring loose coupling between components.
 
-Zaprojektuj system klas wirtualnego ZOO, który spełnia następujące wymagania:
+Species: Tiger, Elephant, Rhinoceros, Fox, SnowLeopard, Rabbit.
 
-• Każde zwierze w ZOO ma swoje imię. Kiedy użyjemy obiektu zwierzęcia jako ciąg znaków,
-powinien on zwrócić gatunek oraz jego imię, np:
+## Getting Started (Docker)
 
-> $dog = new Dog(/* ... */);```
->
-> //...
->
-> echo $dog;
+```bash
+docker compose build
+docker compose run zoo-app
+```
 
-Powinno przykładowo wypisać:
-Pies Duke
+## Getting Started (local)
 
-• Zwierzęta powinny móc być umieszczone w ZOO (dla uproszczenia zakładamy, że
-zwierzęta nie zjedzą się nawzajem i nie muszą przebywać w różnych boksach).
+Requires PHP ^8.5 with the zip extension.
 
-• Zwierzęta dzielą się na mięsożerne, roślinożerne, wszystkożerne. Dlatego powinny one
-przyjmować różne typy posiłków. Zwierzęta mięsożerne powinny przyjmować posiłki
-mięsne, zwierzęta roślinożerne posiłki roślinne, a zwierzęta wszystkożerne powinny
-przyjmować oba typy posiłków.
+```bash
+composer install
+php index.php
+```
 
-• Niektóre zwierzęta posiadają futro, które należy czesać by dobrze się prezentowały. Klasy
-zwierząt posiadających futro powinny zawierać metodę pozwalającą na ich czesanie.
+## Tests
 
-• System klas powinien obejmować następujące gatunki: tygrys, słoń, nosorożec, lis, irbis
-śnieżny, królik.
+```bash
+# Docker
+docker compose run zoo-app php vendor/bin/phpunit
 
-Ocenie podlega sposób podejścia do wykonania zadania, przejrzystość oraz czytelność kodu,
-możliwość ewentualnej rozbudowy.
+# Local
+php vendor/bin/phpunit
+```

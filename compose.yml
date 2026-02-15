@@ -1,0 +1,13 @@
+services:
+  zoo-app:
+    container_name: zoo-app
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: php-runtime
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    command: php index.php
+    volumes:
+      - .:/var/www/html
