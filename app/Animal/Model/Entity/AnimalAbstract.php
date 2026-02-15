@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Animal\Model\Entity;
 
 use App\Animal\Api\AnimalInterface;
@@ -18,21 +20,30 @@ abstract class AnimalAbstract implements AnimalInterface
 {
     use CanEatTrait;
 
+    protected const string SPECIES = '';
+
     public function __construct(
-        readonly private Name $name,
-        readonly private DietOption $diet
+        private readonly Name $name,
+        private readonly DietOption $diet
     ) {
     }
 
     abstract public static function create(string $name): self;
 
+    #[\Override]
     public function name(): Name
     {
         return $this->name;
     }
 
+    #[\Override]
     public function diet(): DietOption
     {
         return $this->diet;
+    }
+
+    public function __toString(): string
+    {
+        return 'I am ' . static::SPECIES . ' ' . $this->name() . ' !';
     }
 }

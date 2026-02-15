@@ -15,6 +15,7 @@ use App\Animal\Model\Attributes\Name;
  */
 class Elephant extends AnimalAbstract
 {
+    protected const string SPECIES = 'Elephant';
 
     public static function create(string $name): AnimalAbstract
     {
@@ -26,10 +27,5 @@ class Elephant extends AnimalAbstract
         $animal->setEatBehavior(MealBehavior::getBehavior($animal));
 
         return $animal;
-    }
-
-    public function __toString(): string
-    {
-        return 'I am ' . (new \ReflectionClass($this))->getShortName() . ' ' . $this->name() . ' ' . '!';
     }
 }

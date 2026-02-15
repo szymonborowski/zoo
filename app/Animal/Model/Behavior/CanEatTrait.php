@@ -22,6 +22,7 @@ trait CanEatTrait
         $this->eatBehavior = $behavior;
     }
 
+    #[\Override]
     public function eat(): void
     {
         $this->eatBehavior->behave();

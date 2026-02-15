@@ -19,6 +19,8 @@ class Tiger extends AnimalAbstract
 {
     use CanCombTrait;
 
+    protected const string SPECIES = 'Tiger';
+
     public static function create(string $name): AnimalAbstract
     {
         $animal = new self(
@@ -30,10 +32,5 @@ class Tiger extends AnimalAbstract
         $animal->setCombBehavior(CombBehavior::getBehavior($animal));
 
         return $animal;
-    }
-
-    public function __toString(): string
-    {
-        return 'I am ' . (new \ReflectionClass($this))->getShortName() . ' ' . $this->name() . ' ' . '!';
     }
 }

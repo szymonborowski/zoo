@@ -14,12 +14,12 @@ use Assert\Assertion;
  * @author Szymon Borowski <szymon.borowski@gmail.com>
  * @version 1.0.0
  */
-final class Name
+final readonly class Name
 {
-    private const MIN_LENGTH = 3;
-    private const MAX_LENGTH = 100;
+    private const int MIN_LENGTH = 3;
+    private const int MAX_LENGTH = 100;
 
-    private function __construct(private readonly string $value)
+    private function __construct(private string $value)
     {
         Assertion::between(
             strlen($value),
@@ -39,7 +39,7 @@ final class Name
         return $this->value === ((string)$otherName);
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->value;
     }

@@ -32,6 +32,7 @@ class Zoo implements ZooInterface
      *
      * @return void
      */
+    #[\Override]
     public function feedAllAnimalsInZoo(): void
     {
         foreach ($this->animals as $animal) {
@@ -44,6 +45,7 @@ class Zoo implements ZooInterface
      *
      * @return AnimalCollectionInterface
      */
+    #[\Override]
     public function listOfCarnivores(): AnimalCollectionInterface
     {
         return $this->animalRepository->filterByDiet($this->animals, DietOption::Carnivore);
@@ -54,6 +56,7 @@ class Zoo implements ZooInterface
      *
      * @return AnimalCollectionInterface
      */
+    #[\Override]
     public function listOfHerbivores(): AnimalCollectionInterface
     {
         return $this->animalRepository->filterByDiet($this->animals, DietOption::Herbivore);
@@ -64,6 +67,7 @@ class Zoo implements ZooInterface
      *
      * @return AnimalCollectionInterface
      */
+    #[\Override]
     public function listOfOmnivores(): AnimalCollectionInterface
     {
         return $this->animalRepository->filterByDiet($this->animals, DietOption::Omnivore);
@@ -74,6 +78,7 @@ class Zoo implements ZooInterface
      *
      * @return void
      */
+    #[\Override]
     public function combAllAnimals(): void
     {
         $listOfAnimalsWithFur = $this->animalRepository->filterByCanComb($this->getAnimalCollection());
@@ -89,11 +94,12 @@ class Zoo implements ZooInterface
      * @param $name
      * @return AnimalInterface|null
      */
+    #[\Override]
     public function getAnimalByName($name): ?AnimalInterface
     {
         $animals = $this->animalRepository->filterByName($this->getAnimalCollection(), Name::fromString($name));
 
-        return isset($animals[0]) ? $animals[0] : null;
+        return $animals[0] ?? null;
     }
 
     /**
@@ -101,6 +107,7 @@ class Zoo implements ZooInterface
      *
      * @return AnimalCollectionInterface
      */
+    #[\Override]
     public function getAnimalCollection(): AnimalCollectionInterface
     {
         return $this->animals;

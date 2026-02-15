@@ -14,6 +14,7 @@ use ReflectionClass;
  */
 class Comb extends BehaviorAbstract implements CombBehaviorInterface
 {
+    #[\Override]
     public function behave(): void
     {
         if (!$this->animal) {

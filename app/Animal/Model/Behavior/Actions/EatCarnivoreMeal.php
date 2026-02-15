@@ -14,6 +14,7 @@ use ReflectionClass;
  */
 class EatCarnivoreMeal extends BehaviorAbstract implements EatBehaviorInterface
 {
+    #[\Override]
     public function behave(): void
     {
         if (!$this->animal) {

@@ -27,6 +27,7 @@ class AnimalRepository implements AnimalRepositoryInterface
      * @param DietOption $diet
      * @return AnimalCollectionInterface
      */
+    #[\Override]
     public function filterByDiet(
         AnimalCollectionInterface $animalCollection,
         DietOption $diet
@@ -49,6 +50,7 @@ class AnimalRepository implements AnimalRepositoryInterface
      * @param Name $name
      * @return AnimalCollectionInterface
      */
+    #[\Override]
     public function filterByName(AnimalCollectionInterface $animalCollection, Name $name): AnimalCollectionInterface
     {
         $result = AnimalCollectionFactory::create(AnimalCollectionInterface::class);
@@ -66,6 +68,7 @@ class AnimalRepository implements AnimalRepositoryInterface
      * @param AnimalCollectionInterface $animalCollection
      * @return AnimalCollectionInterface
      */
+    #[\Override]
     public function filterByCanComb(AnimalCollectionInterface $animalCollection): AnimalCollectionInterface
     {
         $result = AnimalCollectionFactory::create(AnimalCollectionInterface::class);
